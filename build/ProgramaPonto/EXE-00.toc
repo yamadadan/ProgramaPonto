@@ -1,8 +1,8 @@
 ('C:\\Users\\yamad\\OneDrive\\Documentos\\Harve\\Repositorios\\ProgramaPonto\\dist\\ProgramaPonto.exe',
+ True,
  False,
  False,
- False,
- 'C:\\Users\\yamad\\OneDrive\\Documentos\\Harve\\Repositorios\\ProgramaPonto\\venv\\Lib\\site-packages\\PyInstaller\\bootloader\\images\\icon-windowed.ico',
+ 'C:\\Users\\yamad\\OneDrive\\Documentos\\Harve\\Repositorios\\ProgramaPonto\\venv\\Lib\\site-packages\\PyInstaller\\bootloader\\images\\icon-console.ico',
  None,
  False,
  False,
@@ -3853,9 +3853,9 @@
  [],
  False,
  False,
- 1700590548,
- [('runw.exe',
-   'C:\\Users\\yamad\\OneDrive\\Documentos\\Harve\\Repositorios\\ProgramaPonto\\venv\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\runw.exe',
+ 1700591780,
+ [('run.exe',
+   'C:\\Users\\yamad\\OneDrive\\Documentos\\Harve\\Repositorios\\ProgramaPonto\\venv\\Lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
    'EXECUTABLE')],
  'C:\\Program '
  'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\python311.dll')
