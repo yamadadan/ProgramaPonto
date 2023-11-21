@@ -1,4 +1,4 @@
-from tkinter import font, Label, Toplevel
+from tkinter import font, Label, Toplevel, filedialog, messagebox
 from datetime import datetime
 import os
 import calendar
@@ -14,6 +14,34 @@ def arrastar_janela(event, janela):
   y_deslocamento = event.y - y
   janela.geometry(f"+{janela.winfo_x() + x_deslocamento}+{janela.winfo_y() + y_deslocamento}")
 
+def modificar_diretorio():
+  diretorio = carregar_diretorio_salvo()
+  diretorio = filedialog.askdirectory(title='Por favor, selecione um diretório para salvar os horários', initialdir=diretorio)
+  if diretorio:
+    # Se o usuário escolheu um diretório, salve-o para uso futuro
+    with open("diretorio_salvo.txt", "w") as arquivo:
+      arquivo.write(diretorio)
+    messagebox.showinfo("Sucesso", f"Diretório selecionado: {diretorio}")
+  # return diretorio
+
+def selecionar_diretorio():
+  diretorio = filedialog.askdirectory(title='Por favor, selecione um diretório para salvar os horários')
+  if diretorio:
+    # Se o usuário escolheu um diretório, salve-o para uso futuro
+    with open("diretorio_salvo.txt", "w") as arquivo:
+      arquivo.write(diretorio)
+    messagebox.showinfo("Sucesso", f"Diretório selecionado: {diretorio}")
+  return diretorio
+
+def carregar_diretorio_salvo():
+  try:
+    # Tente carregar o diretório salvo da última execução
+    with open("diretorio_salvo.txt", "r") as arquivo:
+      diretorio_salvo = arquivo.read()
+      return diretorio_salvo
+  except FileNotFoundError:
+    return None
+    
 def mostrar_mensagem(janela):
   # Cria uma nova janela sem decoração
   mensagem_janela = Toplevel(janela)
@@ -37,13 +65,13 @@ def mostrar_mensagem(janela):
   # Aguarda 3000 milissegundos (3 segundos) e fecha a nova janela
   mensagem_janela.after(1500, mensagem_janela.destroy)
 
-def marcar_ponto(janela):
+def marcar_ponto(janela, nome_arquivo):
   # Obter o horário atual
   horario_atual = datetime.now().strftime('%H:%M:%S')   
   dia_atual = datetime.now().strftime('%Y-%m-%d')
 
-  # Nome do arquivo da planilha
-  nome_arquivo = 'ponto.xlsx'
+  # # Nome do arquivo da planilha
+  # nome_arquivo = 'ponto.xlsx'
 
   # Se o arquivo da planilha não existir, crie uma nova planilha
   if not os.path.exists(nome_arquivo):
