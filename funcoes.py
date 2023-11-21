@@ -22,7 +22,6 @@ def modificar_diretorio():
     with open("diretorio_salvo.txt", "w") as arquivo:
       arquivo.write(diretorio)
     messagebox.showinfo("Sucesso", f"Diretório selecionado: {diretorio}")
-  # return diretorio
 
 def selecionar_diretorio():
   diretorio = filedialog.askdirectory(title='Por favor, selecione um diretório para salvar os horários')
@@ -57,21 +56,14 @@ def mostrar_mensagem(janela):
   x_pos = janela.winfo_x() + (janela.winfo_width() - mensagem_janela.winfo_reqwidth()) // 2
   y_pos = janela.winfo_y() + (janela.winfo_height() - mensagem_janela.winfo_reqheight()) // 2
   mensagem_janela.geometry(f"+{x_pos}+{y_pos}")
-  # Move a nova janela para o topo
-  # mensagem_janela.lift(janela)
-  # Move a nova janela para o topo
-  # mensagem_janela.attributes('-topmost', True)
 
-  # Aguarda 3000 milissegundos (3 segundos) e fecha a nova janela
+  # Aguarda 1500 milissegundos (1,5 segundos) e fecha a nova janela
   mensagem_janela.after(1500, mensagem_janela.destroy)
 
 def marcar_ponto(janela, nome_arquivo):
   # Obter o horário atual
   horario_atual = datetime.now().strftime('%H:%M:%S')   
   dia_atual = datetime.now().strftime('%Y-%m-%d')
-
-  # # Nome do arquivo da planilha
-  # nome_arquivo = 'ponto.xlsx'
 
   # Se o arquivo da planilha não existir, crie uma nova planilha
   if not os.path.exists(nome_arquivo):
@@ -96,7 +88,6 @@ def marcar_ponto(janela, nome_arquivo):
 
   # Selecionar a última aba
   folha = planilha[abas[-1]]
-  # folha = planilha.active
 
   # Criar uma lista para armazenar os valores da coluna A
   valores_Data = []
@@ -148,7 +139,6 @@ def marcar_ponto(janela, nome_arquivo):
           folha['E'+str(len(valores_Saida2) + 2)] = horario_atual
     else:
       planilha = load_workbook(nome_arquivo)
-      # folha = planilha.active
       # Adicione uma nova aba
       sheet = planilha.create_sheet(calendar.month_abbr[datetime.now().month])
       sheet['A1'] = 'Data'
@@ -183,12 +173,10 @@ def marcar_ponto(janela, nome_arquivo):
     adjusted_width = (max_length + 2)
     folha.column_dimensions[column[0].column_letter].width = adjusted_width
 
-  # folha.append([horario_atual])
   planilha.save(nome_arquivo)
 
   # Exibe uma mensagem
-  # messagebox.showinfo("Sucesso", "Horário adicionado na planilha!")
   mostrar_mensagem(janela)
   
-  # Aguarda 3000 milissegundos (3 segundos) e fecha a janela
+  # Aguarda 1500 milissegundos (1,5 segundos) e fecha a janela
   janela.after(1500, janela.destroy)

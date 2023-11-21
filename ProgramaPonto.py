@@ -1,11 +1,6 @@
 
-# import tkinter as tk
-from tkinter import Tk,font, GROOVE, Button, Menu, Label
-# from ttkthemes import ThemedTk
+from tkinter import Tk,font, GROOVE, Button, Menu
 from funcoes import iniciar_arrastar, arrastar_janela, marcar_ponto, selecionar_diretorio, carregar_diretorio_salvo, modificar_diretorio
-import cProfile
-import pstats
-# from openpyxl.styles import NamedStyle
 
 # Criar a janela principal
 janela = Tk()
@@ -33,7 +28,6 @@ barra_opcoes = Menu(janela)
 # Menu 'Arquivo'
 menu_arquivo = Menu(barra_opcoes, tearoff=0)
 menu_arquivo.add_command(label="Modificar Diretorio Salvo", command=lambda: modificar_diretorio())
-# menu_arquivo.add_command(label="Salvar", command=lambda: selecionar_opcao(label_resultado))
 menu_arquivo.add_separator()
 menu_arquivo.add_command(label="Sair", command=janela.destroy)
 
@@ -42,10 +36,6 @@ barra_opcoes.add_cascade(label="Arquivo", menu=menu_arquivo)
 
 # Configurar a barra de opções na janela
 janela.config(menu=barra_opcoes)
-
-# Rótulo para exibir o resultado da seleção
-# label_resultado = Label(janela, text="Nenhuma opção selecionada")
-# label_resultado.pack(pady=10)
 
 # Tenta carregar o diretório salvo
 diretorio_salvo = carregar_diretorio_salvo()
@@ -61,23 +51,6 @@ estilo_fonte = font.Font(family="Helvetica", size=12, weight="bold")
 # Criar um botão na janela
 botao_registrar_ponto = Button(janela, text="Registrar Ponto", command=lambda: marcar_ponto(janela, nome_arquivo), bg="#FF4021", fg="white", relief=GROOVE, width=15, height=2, font=estilo_fonte)
 botao_registrar_ponto.pack(pady=20)
-# Criando um objeto cProfile
-profiler = cProfile.Profile()
-
-# Iniciando o profiling
-profiler.enable()
-
 
 # Iniciar o loop principal da interface gráfica
 janela.mainloop()
-
-# Parando o profiling
-profiler.disable()
-
-# Criando as estatísticas
-stats = pstats.Stats(profiler)
-
-# Imprimindo as estatísticas ordenadas pelo tempo crescente
-stats.sort_stats('cumulative').print_stats()
-# Imprimindo as estatísticas
-# profiler.print_stats(sort='time')
