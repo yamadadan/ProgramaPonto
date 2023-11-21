@@ -76,7 +76,6 @@ def marcar_ponto(janela, nome_arquivo):
     sheet['D1'] = 'Horario Entrada 2'
     sheet['E1'] = 'Horario Saída 2'
     sheet['F1'] = 'Horas Trabalhadas'
-    sheet['G1'] = 'Horas Faltantes'
     planilha.save(nome_arquivo)
 
   # Adicionar o horário atual à planilha Excel
@@ -125,8 +124,6 @@ def marcar_ponto(janela, nome_arquivo):
         folha['B'+i] = horario_atual
         folha['F'+i] = f"=C{i} - B{i} + (E{i} - D{i})"
         folha['F'+i].number_format = 'hh:mm:ss'
-        folha['G'+i] = f"=TEMPO(8;0;0) - F{i} + F{i-1}"
-        folha['G'+i].number_format = 'hh:mm:ss'
 
       elif valores_Data[-1] == dia_atual:
         if len(valores_Data) > len(valores_Entrada1):
@@ -147,7 +144,6 @@ def marcar_ponto(janela, nome_arquivo):
       sheet['D1'] = 'Horario Entrada 2'
       sheet['E1'] = 'Horario Saída 2'
       sheet['F1'] = 'Horas Trabalhadas'
-      sheet['G1'] = 'Horas Faltantes'
       # Salve o arquivo
       planilha.save(nome_arquivo)
   # Caso ainda não tenhamos valores de data
@@ -157,8 +153,6 @@ def marcar_ponto(janela, nome_arquivo):
     folha['B'+i] = horario_atual
     folha['F'+i] = f"=C{i} - B{i} + (E{i} - D{i})"
     folha['F'+i].number_format = 'hh:mm:ss'
-    folha['G'+i] = f"=TEMPO(8;0;0) - F{i}"
-    folha['G'+i].number_format = 'hh:mm:ss'
   
   # Ajustar largura das colunas
   for column in folha.columns:
