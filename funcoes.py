@@ -125,7 +125,7 @@ def marcar_ponto(janela, nome_arquivo):
         folha['B'+i] = horario_atual
         folha['F'+i] = f"=C{i} - B{i} + (E{i} - D{i})"
         folha['F'+i].number_format = 'hh:mm:ss'
-        folha['G'+i] = f"=8 - F{i} + F{i-1}"
+        folha['G'+i] = f"=TEMPO(8;0;0) - F{i} + F{i-1}"
         folha['G'+i].number_format = 'hh:mm:ss'
 
       elif valores_Data[-1] == dia_atual:
@@ -157,7 +157,7 @@ def marcar_ponto(janela, nome_arquivo):
     folha['B'+i] = horario_atual
     folha['F'+i] = f"=C{i} - B{i} + (E{i} - D{i})"
     folha['F'+i].number_format = 'hh:mm:ss'
-    folha['G'+i] = f"=8 - F{i}"
+    folha['G'+i] = f"=TEMPO(8;0;0) - F{i}"
     folha['G'+i].number_format = 'hh:mm:ss'
   
   # Ajustar largura das colunas
